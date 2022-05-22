@@ -1,9 +1,9 @@
 package main
 
 import (
-	"LearnP/gin2/app/blog"
-	"LearnP/gin2/app/shop"
-	"LearnP/gin2/routes"
+	"LearnP/gin/gin2/app/blog"
+	"LearnP/gin/gin2/app/shop"
+	"LearnP/gin/gin2/routes"
 	"fmt"
 )
 

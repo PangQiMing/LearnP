@@ -1,21 +1,25 @@
 package main
 
 import (
-	"LearnP/gin/routes"
 	"fmt"
-	"github.com/gin-gonic/gin"
+	"sync"
 )
 
-func main() {
-	//r := routes.SetupRouter()
-	//if err := r.Run(); err != nil {
-	//	fmt.Printf("startup service failed, err:%v\n", err)
-	//})
+func action() {
+	fmt.Println("Hello Goroutine!")
+}
 
-	r := gin.Default()
-	routes.LoadShop(r)
-	routes.LoadBlog(r)
-	if err := r.Run(); err != nil {
-		fmt.Printf("startup service failed, err: %v", err)
+func main() {
+	//go action()
+	var wg sync.WaitGroup
+
+	for i := 0; i < 2; i++ {
+		wg.Add(1)
+		go func(num int) {
+			fmt.Printf("Hello Goroutine! %d\n", num)
+			wg.Done()
+		}(i)
 	}
+	//time.Sleep(2 * time.Second)
+	wg.Wait()
 }
